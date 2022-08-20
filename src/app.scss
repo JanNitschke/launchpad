@@ -1,0 +1,182 @@
+#root {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
+}
+
+.app {
+	ul {
+		list-style: none;
+		padding: 0;
+		li {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: left;
+			margin: 0 1rem;
+			padding: 0.5rem 1rem;
+			border-radius: 8px;
+			svg {
+				padding: 1rem;
+			}
+			background-color: rgba(75, 75, 75, 0);
+
+			&:hover {
+				background-color: rgb(75, 75, 75, 1);
+			}
+		}
+	}
+}
+
+.error {
+	position: fixed;
+	width: 30rem;
+	padding: 2rem 4rem;
+	box-sizing: border-box;
+	bottom: 0;
+	left: calc(50% - 15rem);
+	background-color: rgb(31, 31, 31);
+	border-radius: 8px 8px 0 0;
+	font-size: 1.5rem;
+	color: rgb(197, 0, 66);
+}
+
+.upload_form {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: center;
+	padding: 2rem;
+	background-color: rgb(75, 75, 75);
+	border-radius: 8px;
+	margin-top: 4rem;
+	> * {
+		margin: 1rem;
+	}
+}
+.sounds {
+	transition: opacity 0.22s ease-out;
+
+	&.faded {
+		opacity: 0.5;
+	}
+}
+.channel {
+	position: relative;
+	width: 100%;
+	button {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.icon {
+		transition: transform cubic-bezier(0.34, 1.56, 0.64, 1) 0.22s;
+		transform: rotate(0deg);
+	}
+	.popup {
+		transition: transform cubic-bezier(0.34, 1.56, 0.64, 1) 0.22s, opacity 0.22s ease-out;
+		opacity: 0;
+		transform: translateY(1rem);
+		pointer-events: none;
+		position: absolute;
+		width: 100%;
+		z-index: 10;
+		top: calc(100% + 0.25rem);
+		box-shadow: 1.1px 1.2px 2.2px -4px rgba(0, 0, 0, 0.031),
+			2.7px 2.9px 5.4px -4px rgba(0, 0, 0, 0.044), 5px 5.4px 10.1px -4px rgba(0, 0, 0, 0.055),
+			8.9px 9.6px 18.1px -4px rgba(0, 0, 0, 0.066),
+			16.7px 18px 33.8px -4px rgba(0, 0, 0, 0.079), 40px 43px 81px -4px rgba(0, 0, 0, 0.11);
+
+		background-color: #000000;
+		border-radius: 8px;
+		li {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: left;
+			margin: 0;
+			padding: 0.5rem 1rem;
+			border-radius: 8px;
+			svg {
+				padding: 1rem;
+			}
+			background-color: rgba(36, 36, 36, 0);
+
+			&:hover {
+				background-color: rgba(36, 36, 36, 1);
+			}
+		}
+	}
+
+	&.open {
+		button {
+			&:hover {
+				transform: scale(1);
+				background-color: #000000;
+			}
+		}
+		.popup {
+			transform: translateY(0);
+			pointer-events: all;
+			opacity: 1;
+		}
+		.icon {
+			transform: rotate(180deg);
+		}
+		li {
+			cursor: pointer;
+		}
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	.app {
+		ul {
+			li {
+				background-color: rgba(239, 239, 239, 0);
+				&:hover {
+					background-color: rgba(239, 239, 239, 1);
+				}
+			}
+		}
+	}
+
+	.channel {
+		.popup {
+			background-color: #efefef;
+			li {
+				background-color: rgba(255, 255, 255, 0);
+
+				&:hover {
+					background-color: rgba(255, 255, 255, 1);
+				}
+			}
+		}
+
+		&.open {
+			button {
+				&:hover {
+					transform: scale(1);
+					background-color: #efefef;
+				}
+			}
+		}
+	}
+	.error {
+		background-color: #efefef;
+	}
+	.upload_form {
+		background-color: #ffffff;
+		box-shadow:
+		0px 1.3px 2.2px rgba(0, 0, 0, 0.011),
+		0px 3.1px 5.3px rgba(0, 0, 0, 0.016),
+		0px 5.8px 10px rgba(0, 0, 0, 0.02),
+		0px 10.3px 17.9px rgba(0, 0, 0, 0.024),
+		0px 19.2px 33.4px rgba(0, 0, 0, 0.029),
+		0px 46px 80px rgba(0, 0, 0, 0.04)
+	  ;
+		border: 1px solid #cccccc;
+	}
+}

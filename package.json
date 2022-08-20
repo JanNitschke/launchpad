@@ -1,0 +1,44 @@
+{
+  "name": "launchpad",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build:server": "esbuild server/main.ts --bundle --external:./node_modules/* --platform=node --outfile=serverDist/main.cjs",
+    "build:ui": "vite build",
+    "build": "esbuild server/main.ts --bundle --external:./node_modules/* --platform=node --outfile=serverDist/main.cjs && vite build",
+    "preview": "vite preview",
+    "start": "node serverDist/main.cjs"
+  },
+  "dependencies": {
+    "@discordjs/opus": "^0.8.0",
+    "@discordjs/voice": "^0.11.0",
+    "@types/cookie-session": "^2.0.44",
+    "body-parser": "^1.20.0",
+    "cookie-session": "^2.0.0",
+    "discord.js": "^14.2.0",
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "ffmpeg-static": "^5.0.2",
+    "openid-client": "^5.1.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sodium": "^3.0.2",
+    "undici": "^5.9.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/express-fileupload": "^1.2.3",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.1",
+    "clsx": "^1.2.1",
+    "esbuild": "^0.15.5",
+    "react-icons": "^4.4.0",
+    "sass": "^1.54.5",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.7"
+  }
+}

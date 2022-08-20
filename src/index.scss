@@ -1,0 +1,128 @@
+:root {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+	font-family: 'Open Sans', sans-serif;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  font-family: 'Poppins', sans-serif;
+	letter-spacing: -0.02em;
+}
+
+h2, h3, h4{
+  font-family: 'Poppins', sans-serif;
+	letter-spacing: -0.02em;
+}
+
+
+button, .button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1.2em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  transition: transform cubic-bezier(0.34, 1.56, 0.64, 1) 0.22s, background-color 0.22s ease-out;
+	cursor: pointer;
+  background-color: #000000;
+  transform: scale(1);
+	&:hover {
+		transform: scale(1.05);
+    background-color: #24303b;
+	}
+  &:active{
+    transform: scale(0.95);
+    background-color: #0c1115;
+  }
+  &:disabled{
+    background-color: #313131;
+    color: #7d7d7d;
+    &:hover,&:active{
+      transform: scale(1);
+      background-color: #313131;
+    }
+
+    cursor: not-allowed;
+  }
+}
+
+
+select{
+  padding: 0.6em 1.2em;
+  font-size: 1.2em;
+  outline: none;
+  border: 1px solid #7d7d7d;
+  border-radius: 8px;
+}
+
+input, .input{
+  padding: 0.6em 1.2em;
+  font-size: 1.2em;
+  outline: none;
+  border: 1px solid #7d7d7d;
+  border-radius: 8px;
+}
+input[type="file"]{
+  display: none;
+}
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button, .button {
+
+    background-color: #efefef;
+    &:hover {
+      background-color: #dddddd;
+    }
+    &:active{
+      background-color: #b1b8bf;
+    }
+    &:disabled{
+      background-color: #cdcdcd;
+      color: #7d7d7d;
+      &:hover,&:active{
+        background-color: #cdcdcd;
+      }
+      cursor: not-allowed;
+    }
+  }
+}
