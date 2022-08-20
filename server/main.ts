@@ -119,6 +119,7 @@ const main = async (
 			res.status(500).send("error");
 			return;
 		}
+		const guildId = req.query.guild_id;
 
 		const userRes = await fetch(`https://discord.com/api/oauth2/@me`, {
 			headers: {
@@ -127,7 +128,7 @@ const main = async (
 		});
 		const user = (await userRes.json()) as any;
 		(req.session as Session).user = user.user.id;
-		const redirect = req.session?.redirect ?? "/";
+		const redirect = guildId? `/${guildId}` : req.session?.redirect ?? "/";
 		res.redirect(302, redirect);
 	});
 

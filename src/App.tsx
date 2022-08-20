@@ -13,7 +13,7 @@ function App() {
 	const selectRef = useRef<HTMLDivElement>(null);
 
 	const [name, setName] = useState("");
-	const [error, setError] = useState<string | null>("test error");
+	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		if (error) {
@@ -35,7 +35,7 @@ function App() {
 				setName(data.guildName);
 				setChannels(data.channels);
 			});
-	}, [setSounds]);
+	}, [setSounds, setName, setChannels]);
 
 	useEffect(() => {
 		if (!guild) return;
@@ -69,13 +69,13 @@ function App() {
 		}
 	};
 
-	const upload = async (data: FormData) => {
+	const upload = useCallback(async (data: FormData) => {
 		await fetch(`/sounds/${guild}`, {
 			method: "POST",
 			body: data,
 		});
 		fetchSounds();
-	};
+	}, [guild, fetchSounds]);
 
 	const selectChannel = useCallback(
 		(c: string) => {
@@ -100,7 +100,8 @@ function App() {
 			{!guild && (
 				<>
 					<h1>No server selected</h1>
-					<a href="https://discord.com/api/oauth2/authorize?client_id=462749560981291008&redirect_uri=https%3A%2F%2Fdiscord.nitschke.dev%2Fauth&response_type=code&scope=identify%20applications.commands%20voice%20guilds%20guilds.members.read"><button> add to your server</button></a>
+					
+					<a href="https://discord.com/api/oauth2/authorize?client_id=462749560981291008&permissions=2184184832&redirect_uri=https%3A%2F%2Fdiscord.nitschke.dev%2Fauth&response_type=code&scope=identify%20bot"><button> add to your server</button></a>
 					<p style={{paddingTop: "1rem"}}>Add the bot to your server and use the /link command to open the app!</p>
 				</>
 			)}
@@ -121,6 +122,9 @@ function App() {
 									</li>
 								))}
 							</ul>
+							{sounds.length === 0 && (
+								<h2>Upload some sounds to get started!</h2>
+							)}
 						</div>
 					</div>
 					<div className={clsx("sounds", selectOpen && "faded")}>
@@ -132,7 +136,7 @@ function App() {
 								</li>
 							))}
 						</ul>
-						<Upload upload={upload} />
+						<Upload upload={upload} setError={setError} />
 						{error && <div className="error">{error}</div>}
 					</div>
 				</>

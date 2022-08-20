@@ -149,6 +149,8 @@ export const init = async (token: string, db: SoundDB, origin: string) => {
 				await interaction.reply(`${origin}/${interaction.guildId}`);
 			} else if (interaction.commandName === "play" && interaction.guildId) {
 				playSoundForInteraction(interaction);
+			}else if (interaction.commandName === "sound" && interaction.guildId) {
+				playSoundForInteraction(interaction);
 			}
 		} catch (ex) {
 			console.error(ex);
